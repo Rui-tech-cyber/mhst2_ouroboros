@@ -8,10 +8,13 @@
   </form>
 
   <!-- 一覧のプレースホルダー -->
-  <ul aria-label="モンスター一覧">
-    <li>
-      <img src="/placeholder.png" alt="" width="40" height="40" style="object-fit:cover; vertical-align:middle; border-radius:8px;">
-      <span style="margin-left: 8px;"> (ダミー) モンスター名</span>
-    </li>
-  </ul>
+  <ul>
+    <% @monsters.each do |monster| %>
+      <li style="margin: 0.5rem 0;">
+        <%= link_to monster_path(monster), style: "text-decoration:none; color: inherit;" do %>
+          <img src="<%= monster.image_url %>" alt="<%= monster.name %>" width="40" height="40" style="object-fit:cover; border-radius:8px;">
+          <span style="margin-left: 8px;"><%= monster.name %></span>
+        <% end %>
+      </li>
+    <% end %>
 </div>

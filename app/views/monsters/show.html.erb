@@ -1,0 +1,14 @@
+<div class="container" style="max-width: 960px; margin: 2rem auto;">
+  <h1><%= @monster.name %></h1>
+
+  <div style="margin: 1rem 0;">
+    <img src="<%= @monster.image_url %>" alt="<%= @monster.name %>" width="120" height="120" style="object-fit:cover; border-radius:12px;">
+  </div>
+
+  <h2>3すくみ</h2>
+  <p style="font-size: 1.2em; color: darkred;">
+    <%= @monster.element %>
+  </p>
+
+  <%= link_to "← 戻る", root_path, style: "display:inline-block; margin-top:1rem; color: blue;" %>
+</div>

@@ -7,3 +7,9 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Monster.create!(
+  name: "リオレウス",
+  kana: "りおれうす",
+  element: :power,
+  image_url: "/assets/placeholder.png" # ダミー画像
+)
