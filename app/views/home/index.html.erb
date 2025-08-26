@@ -1,2 +1,17 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="container" style="max-width: 960px; margin: 2rem auto;">
+  <h1>MHST2 Ouroboros</h1>
+  <p>ここにモンスター一覧と検索UIを入れる。まずは骨組み</p>
+
+  <!-- 検索ボックス、まだ動かない。 -->
+  <form action="#" method="get" aria-label="モンスター検索フォーム">
+    <input type="search" name="q" placeholder="モンスター名を検索" aria-label="検索語">
+  </form>
+
+  <!-- 一覧のプレースホルダー -->
+  <ul aria-label="モンスター一覧">
+    <li>
+      <img src="/placeholder.png" alt="" width="40" height="40" style="object-fit:cover; vertical-align:middle; border-radius:8px;">
+      <span style="margin-left: 8px;"> (ダミー) モンスター名</span>
+    </li>
+  </ul>
+</div>
