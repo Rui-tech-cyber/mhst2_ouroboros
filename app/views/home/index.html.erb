@@ -1,22 +1,30 @@
-<div class="container" style="max-width: 960px; margin: 2rem auto;">
-  <h1>MHST2 Ouroboros</h1>
-  <p>ここにモンスター一覧と検索UIを入れる。まずは骨組み</p>
+<h1>MHST2 ３すくみアプリ</h1>
 
-  <!-- 検索ボックス -->
-  <h1>モンスター一覧</h1>
+<!-- 検索フォーム -->
+<%= form_with url: root_path, method: :get, local: true do |f| %>
+  <%= f.text_field :q, placeholder: "モンスター名で検索" %>
+  <%= f.submit "検索" %>
+<% end %>
 
-  <%= form_with url: monsters_path, method: :get, local: true do %>
-    <%= text_field_tag :q, params[:q], placeholder: "モンスター名で検索" %>
-    <%= submit_tag "検索" %>
+<!-- モンスター一覧 -->
+<h2>モンスター一覧</h2>
+<div>
+  <% @monsters.each do |monster| %>
+    <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+      <%= image_tag monster.image_url, alt: monster.name, width: 50, height: 50, style: "margin-right: 0.5rem;" %>
+      <%= link_to monster.name, monster_path(monster) %>
+    </div>
   <% end %>
-
-  <!-- 一覧のプレースホルダー -->
-  <ul>
-    <% @monsters.each do |monster| %>
-      <li style="margin: 0.5rem 0;">
-        <%= image_tag monster.image_url, size: "50*50" if monster.image_url.present? %>
-        <%= link_to monster.name, monster_path(monster) %>
-      </li>
-    <% end %>
-  </ul>
 </div>
+
+<!-- 検索履歴（下部に表示） -->
+<h2>検索履歴</h2>
+<ul>
+  <% @search_histories.each do |history| %>
+    <li>
+      <%= link_to history.keyword, root_path(q: history.keyword) %>
+      <%= button_to "削除", destroy_history_monsters_path(id: history.id),
+              method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+    </li>
+  <% end %>
+</ul>

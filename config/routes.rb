@@ -1,8 +1,17 @@
 Rails.application.routes.draw do
+  get "search_histories/index"
+  get "search_histories/destroy"
   get "monsters/show"
   root "home#index"
 
-  resources :monsters
+  resources :monsters, only: [:index, :show] do
+    collection do
+      delete "history/:id", to: "monsters#destroy_history", as: :destroy_history
+    end
+  end
+
+
+  resources :search_histories, only: [:index, :destroy]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

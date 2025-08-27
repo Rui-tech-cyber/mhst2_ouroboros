@@ -11,9 +11,22 @@ class MonstersController < ApplicationController
 
   def index
     if params[:q].present?
-      @monsters = Monster.where("name LIKE ? OR kana LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+      keyword = params[:q].strip
+      @monsters = Monster.where("name LIKE ? OR kana LIKE ?", "%#{keyword}%", "%#{keyword}%")
+
+      unless SearchHistory.exists?(keyword: keyword)
+        SearchHistory.create!(keyword: keyword)
+      end
     else
       @monsters = Monster.all
     end
+
+    @search_histories = SearchHistory.recent
+  end
+
+  def destroy_history
+    history = SearchHistory.find(params[:id])
+    history.destroy
+    redirect_to root_path, notice: "検索履歴を削除しました。"
   end
 end

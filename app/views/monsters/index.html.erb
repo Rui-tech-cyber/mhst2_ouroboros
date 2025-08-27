@@ -1,0 +1,13 @@
+<h2>検索履歴</h2>
+
+<ul>
+  <% @search_histories.each do |history| %>
+    <li>
+      <%= link_to history.keyword, monsters_path(q: history.keyword) %>
+      <%= link_to "削除", destroy_history_monsters_path(id: history.id),
+                  data: { turbo_method: :delete, confirm: "削除してよろしいですか？" } %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "モンスター一覧に戻る", monsters_path, class: "btn btn-primary" %>
