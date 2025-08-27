@@ -2,19 +2,21 @@
   <h1>MHST2 Ouroboros</h1>
   <p>ここにモンスター一覧と検索UIを入れる。まずは骨組み</p>
 
-  <!-- 検索ボックス、まだ動かない。 -->
-  <form action="#" method="get" aria-label="モンスター検索フォーム">
-    <input type="search" name="q" placeholder="モンスター名を検索" aria-label="検索語">
-  </form>
+  <!-- 検索ボックス -->
+  <h1>モンスター一覧</h1>
+
+  <%= form_with url: monsters_path, method: :get, local: true do %>
+    <%= text_field_tag :q, params[:q], placeholder: "モンスター名で検索" %>
+    <%= submit_tag "検索" %>
+  <% end %>
 
   <!-- 一覧のプレースホルダー -->
   <ul>
     <% @monsters.each do |monster| %>
       <li style="margin: 0.5rem 0;">
-        <%= link_to monster_path(monster), style: "text-decoration:none; color: inherit;" do %>
-          <img src="<%= monster.image_url %>" alt="<%= monster.name %>" width="40" height="40" style="object-fit:cover; border-radius:8px;">
-          <span style="margin-left: 8px;"><%= monster.name %></span>
-        <% end %>
+        <%= image_tag monster.image_url, size: "50*50" if monster.image_url.present? %>
+        <%= link_to monster.name, monster_path(monster) %>
       </li>
     <% end %>
+  </ul>
 </div>

@@ -8,4 +8,12 @@ class MonstersController < ApplicationController
     @default_element = @states.first&.element || "none"
     @default_label = @states.first&.state_name || "形態変化なし"
   end
+
+  def index
+    if params[:q].present?
+      @monsters = Monster.where("name LIKE ? OR kana LIKE ?", "%#{params[:q]}%", "%#{params[:q]}%")
+    else
+      @monsters = Monster.all
+    end
+  end
 end
