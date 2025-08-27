@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_26_101740) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_27_053212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "monster_states", force: :cascade do |t|
+    t.bigint "monster_id", null: false
+    t.string "state_name"
+    t.integer "element"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["monster_id"], name: "index_monster_states_on_monster_id"
+  end
 
   create_table "monsters", force: :cascade do |t|
     t.string "name"
@@ -28,4 +37,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_26_101740) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "monster_states", "monsters"
 end

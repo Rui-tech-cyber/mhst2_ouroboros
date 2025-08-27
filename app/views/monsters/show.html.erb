@@ -1,14 +1,48 @@
 <div class="container" style="max-width: 960px; margin: 2rem auto;">
-  <h1><%= @monster.name %></h1>
-
-  <div style="margin: 1rem 0;">
+  <h1 style="margin-bottom: 0.5rem;"><%= @monster.name %></h1>
+  <div style="margin: 0.5rem 0 1rem;">
     <img src="<%= @monster.image_url %>" alt="<%= @monster.name %>" width="120" height="120" style="object-fit:cover; border-radius:12px;">
   </div>
 
-  <h2>3すくみ</h2>
-  <p style="font-size: 1.2em; color: darkred;">
-    <%= @monster.element %>
-  </p>
+  <!-- 形態ボタン群 -->
+  <div data-controller="state" data-state-default-element-value="<%= @default_element %>" data-state-default-label-value="<%= @default_label %>">
+    <div role="group" aria-label="形態選択" style="display:flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+      <% @states.each do |st| %>
+        <button type="button"
+                data-state-target="button"
+                data-action="click->state#change"
+                data-state-element="<%= st.element %>"
+                data-state-label="<%= st.state_name %>"
+                aria-pressed="false"
+                style="padding: .5rem .8rem; border-radius: 10px; border: 1px solid #ccc; cursor: pointer;">
+          <%= st.state_name %>
+        </button>
+      <% end %>
 
-  <%= link_to "← 戻る", root_path, style: "display:inline-block; margin-top:1rem; color: blue;" %>
+      <% unless @has_form_change %>
+        <span style="align-self:center; color:#888;">形態変化なし</span>
+      <% end %>
+    </div>
+
+    <!-- 大きな表示領域 -->
+    <div style="display:grid; gap: 1rem; align-items:center; justify-items:center; margin: 1rem 0;">
+      <div data-state-target="label" style="font-size: 2rem; font-weight: 700; text-align:center;">
+        <!-- jsで上書き -->
+      </div>
+      <img data-state-target="image"
+           src="/assets/elements/none.png"
+           alt="すくみ画像"
+           width="220" height="220"
+           style="object-fit:contain;">
+    </div>
+  </div>
+
+  <div style="margin-top: 1rem;">
+    <%= link_to "← 戻る", root_path, style: "color: blue;" %>
+  </div>
 </div>
+
+<style>
+  /* シンプルなON表示 */
+  .is-active { background: #eef; border-color: #99c; }
+</style>

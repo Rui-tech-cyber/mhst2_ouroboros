@@ -1,3 +1,3 @@
 class Monster < ApplicationRecord
-  enum :element, { power:0, speed: 1, technic: 2 }
+  has_many :monster_states, dependent: :destroy
 end
