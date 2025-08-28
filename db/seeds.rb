@@ -149,3 +149,16 @@ narga.monster_states.create!([
     action_pattern: "-"
   }
 ])
+
+
+# リオレイア作成
+rathian = Monster.find_or_create_by!(name: "リオレイア", kana: "りおれいあ", image_url: "rathian.png") do |m|
+  m.image_url = "rathian.png"
+end
+
+rathian.monster_states.destroy_all
+
+rathian.monster_states.create!([
+  { state_name: "通常", element: :speed, action_count: 1, action_pattern: "・毒付与攻撃を使用・やけど付与攻撃を使用" },
+  { state_name: "怒り", element: :power, action_count: 1, action_pattern: "・毒付与攻撃を使用・やけど付与攻撃を使用" }
+])
