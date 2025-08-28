@@ -101,3 +101,30 @@ pukei.monster_states.create!([
   { state_name: "通常", element: :technique, action_count: 1, action_pattern: "HP減少時ぱくぱく(もぐもぐ)タイムを行う" },
   { state_name: "食糧(貯蔵時)", element: :power, action_count: 1, action_pattern: "毒付与攻撃や全体攻撃も使用" }
 ])
+
+
+# 天眼タマミツネ作成
+tengen_mizutsune = Monster.find_or_create_by!(name: "天眼タマミツネ", kana: "てんげんたまみつね", image_url: "divinesight-mizutsune.png")
+
+tengen_mizutsune.monster_states.destroy_all
+
+tengen_mizutsune.monster_states.create!([
+  {
+    state_name: "通常",
+    element: :speed,
+    action_count: 1,
+    action_pattern: "スピード攻撃多用・妖泡(全体攻撃)←素早さ・命中率ダウン状態付与・数ターン後「泡まとい」使用←使用後に泡まとい状態に移行"
+  },
+  {
+    state_name: "泡まとい",
+    element: :no_form,
+    action_count: 1,
+    action_pattern: "攻撃に対して反撃を行う・1ターン目に「様子見」使用・2ターン目に「妖泡」使用←怒り状態に移行"
+  },
+  {
+    state_name: "怒り",
+    element: :power,
+    action_count: 2,
+    action_pattern: "パワー攻撃多用・怒り状態移行後のターンに「毛繕い」使用←火属性攻撃力アップ・4ターン目に全体攻撃「水月」使用←使用後に怒り状態解除"
+  }
+])
