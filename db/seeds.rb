@@ -162,3 +162,16 @@ rathian.monster_states.create!([
   { state_name: "通常", element: :speed, action_count: 1, action_pattern: "・毒付与攻撃を使用・やけど付与攻撃を使用" },
   { state_name: "怒り", element: :power, action_count: 1, action_pattern: "・毒付与攻撃を使用・やけど付与攻撃を使用" }
 ])
+
+
+# アンジャナフ作成
+anjanath = Monster.find_or_create_by!(name: "アンジャナフ", kana: "あんじゃなふ", image_url: "anjanath.png") do |m|
+  m.image_url = "anjanath.png"
+end
+
+anjanath.monster_states.destroy_all
+
+anjanath.monster_states.create!([
+  { state_name: "通常", element: :speed, action_count: 1, action_pattern: "-" },
+  { state_name: "怒り", element: :power, action_count: 1, action_pattern: "・炎熱蓄積を使用した次ターンにバーニングブレスを使用" }
+])
