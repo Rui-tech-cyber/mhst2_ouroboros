@@ -72,3 +72,21 @@ kulu.monster_states.create!([
 ])
 
 puts "Seeded: #{Monster.count} monsters / #{MonsterState.count} states"
+
+
+# 燼滅刃ディノバルド作成
+glavenus = Monster.find_or_create_by!(name: "燼滅刃ディノバルド", kana: "じんめつじんでぃのばるど", image_url: "hellblade-glavenus.png") do |m|
+  m.image_url = "hellblade-glavenus.png"
+end
+
+glavenus.monster_states.destroy_all
+
+glavenus.monster_states.create!([
+  { state_name: "通常", element: :power, action_count: 1, action_pattern: "・パワー攻撃多用・数ターン経過後「滅火球溜め」使用" },
+  { state_name: "滅火球(溜め)", element: :speed, action_count: 1, action_pattern: "・スピード攻撃多用・数ターン経過後「フレアチャクラム」使用（尻尾赤熱状態に移行）" },
+  { state_name: "尻尾赤熱", element: :no_form, action_count: 1, action_pattern: "・ノータイプ攻撃「エクスプロードテイル」使用・3ターン目に全体攻撃「爆熱刃」使用(通常状態(尻尾赤熱解除後)に移行)" },
+  { state_name: "通常(尻尾赤熱解除後)", element: :power, action_count: 1, action_pattern: "・パワー攻撃多用・数ターン経過後「フレアチャクラム」使用(尻尾赤熱状態に移行)" },
+  { state_name: "尻尾赤熱(尻尾破壊後)", element: :technique, action_count: 1, action_pattern: "・テクニック攻撃多用・3ターン目に全体攻撃「爆熱刃」使用(通常状態(尻尾赤熱解除後)に移行)" }
+])
+
+puts "Seeded: #{Monster.count} monsters / #{MonsterState.count} states"
