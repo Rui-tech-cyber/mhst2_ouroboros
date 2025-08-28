@@ -190,3 +190,16 @@ nergigante.monster_states.create!([
   { state_name: "白棘", element: :power, action_count: 2, action_pattern: "-" },
   { state_name: "白棘+怒り", element: :speed, action_count: 2, action_pattern: "-" }
 ])
+
+
+# セルレギオス作成
+seregios = Monster.find_or_create_by!(name: "セルレギオス", kana: "せるれぎおす", image_url: "seregios.png") do |m|
+  m.image_url = "seregios.png"
+end
+
+seregios.monster_states.destroy_all
+
+seregios.monster_states.create!([
+  { state_name: "通常", element: :technique, action_count: 1, action_pattern: "-" },
+  { state_name: "怒り", element: :speed, action_count: 1, action_pattern: "-" }
+])
