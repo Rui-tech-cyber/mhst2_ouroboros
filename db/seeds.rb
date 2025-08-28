@@ -90,3 +90,14 @@ glavenus.monster_states.create!([
 ])
 
 puts "Seeded: #{Monster.count} monsters / #{MonsterState.count} states"
+
+
+# プケプケ作成
+pukei = Monster.find_or_create_by!(name: "プケプケ", kana: "ぷけぷけ", image_url: "pukei-pukei.png")
+
+pukei.monster_states.destroy_all
+
+pukei.monster_states.create!([
+  { state_name: "通常", element: :technique, action_count: 1, action_pattern: "HP減少時ぱくぱく(もぐもぐ)タイムを行う" },
+  { state_name: "食糧(貯蔵時)", element: :power, action_count: 1, action_pattern: "毒付与攻撃や全体攻撃も使用" }
+])
