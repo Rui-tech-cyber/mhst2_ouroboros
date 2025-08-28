@@ -7,6 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   en
+
 # リオレウス作成
 rathalos = Monster.find_or_create_by!(name: "リオレウス", kana: "りおれうす") do |m|
   m.image_url = "rathalos.png"
@@ -21,6 +22,23 @@ rathalos.monster_states.create!([
   { state_name: "怒り", element: :power, action_count: 1, action_pattern: "-" },
   { state_name: "飛行", element: :speed, action_count: 1, action_pattern: "-" },
   { state_name: "怒り+飛行", element: :technique, action_count: 1, action_pattern: "-" }
+])
+
+puts "Seeded: #{Monster.count} monsters / #{MonsterState.count} states"
+
+
+# 白疾風ナルガクルガ作成
+nargacuga = Monster.find_or_create_by!(name: "白疾風ナルガクルガ", kana: "しろはやてなるがくるが", image_url: "silverwind-nargacuga.png") do |m|
+  m.image_url = "silverwind-nargacuga.png"
+end
+
+# 既存の状態データを初期化（開発用）
+nargacuga.monster_states.destroy_all
+
+# 状態ごとの3すくみデータ作成
+nargacuga.monster_states.create!([
+  { state_name: "通常", element: :technique, action_count: 1, action_pattern: "-" },
+  { state_name: "怒り", element: :speed, action_count: 2, action_pattern: "-" }
 ])
 
 puts "Seeded: #{Monster.count} monsters / #{MonsterState.count} states"
