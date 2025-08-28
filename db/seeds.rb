@@ -42,3 +42,20 @@ nargacuga.monster_states.create!([
 ])
 
 puts "Seeded: #{Monster.count} monsters / #{MonsterState.count} states"
+
+
+# 紫毒姫リオレイア作成
+rathian = Monster.find_or_create_by!(name: "紫毒姫リオレイア", kana: "しどくひめりおれいあ", image_url: "dreadqueen-rathian.png") do |m|
+  m.image_url = "dreadqueen-rathian.png"
+end
+
+# 既存の状態データを初期化（開発用）
+rathian.monster_states.destroy_all
+
+# 状態ごとの3すくみデータ作成
+rathian.monster_states.create!([
+  { state_name: "通常", element: :technique, action_count: 1, action_pattern: "-" },
+  { state_name: "怒り", element: :speed, action_count: 1, action_pattern: "-" }
+])
+
+puts "Seeded: #{Monster.count} monsters / #{MonsterState.count} states"
