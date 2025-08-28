@@ -1,3 +1,5 @@
+require 'ostruct'
+
 class MonstersController < ApplicationController
   def index
     if params[:q].present?

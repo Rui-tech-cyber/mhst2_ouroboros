@@ -128,3 +128,24 @@ tengen_mizutsune.monster_states.create!([
     action_pattern: "パワー攻撃多用・怒り状態移行後のターンに「毛繕い」使用←火属性攻撃力アップ・4ターン目に全体攻撃「水月」使用←使用後に怒り状態解除"
   }
 ])
+
+
+# ナルガクルガ作成
+narga = Monster.find_or_create_by!(name: "ナルガクルガ", kana: "なるがくるが", image_url: "nargacuga.png")
+
+narga.monster_states.destroy_all
+
+narga.monster_states.create!([
+  {
+    state_name: "通常",
+    element: :speed,
+    action_count: 1,
+    action_pattern: "-"
+  },
+  {
+    state_name: "怒り",
+    element: :technique,
+    action_count: 2,
+    action_pattern: "-"
+  }
+])
