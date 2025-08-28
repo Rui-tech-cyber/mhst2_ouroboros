@@ -175,3 +175,18 @@ anjanath.monster_states.create!([
   { state_name: "通常", element: :speed, action_count: 1, action_pattern: "-" },
   { state_name: "怒り", element: :power, action_count: 1, action_pattern: "・炎熱蓄積を使用した次ターンにバーニングブレスを使用" }
 ])
+
+
+# ネルギガンテ作成
+nergigante = Monster.find_or_create_by!(name: "ネルギガンテ", kana: "ねるぎがんて", image_url: "nergigante.png") do |m|
+  m.image_url = "nergigante.png"
+end
+
+nergigante.monster_states.destroy_all
+
+nergigante.monster_states.create!([
+  { state_name: "通常", element: :technique, action_count: 1, action_pattern: "-" },
+  { state_name: "怒り", element: :speed, action_count: 2, action_pattern: "-" },
+  { state_name: "白棘", element: :power, action_count: 2, action_pattern: "-" },
+  { state_name: "白棘+怒り", element: :speed, action_count: 2, action_pattern: "-" }
+])
