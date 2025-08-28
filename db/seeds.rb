@@ -16,10 +16,10 @@ end
 rathalos.monster_states.destroy_all
 
 rathalos.monster_states.create!([
-  { state_name: "通常", element: :power },
-  { state_name: "怒り", element: :power },
-  { state_name: "飛行", element: :speed },
-  { state_name: "怒り+飛行", element: :technique }
+  { state_name: "通常", element: :power, action_count: 1, action_pattern: "テイクオフフレイム使用後飛行状態に移行" },
+  { state_name: "怒り", element: :power, action_count: 1, action_pattern: "-" },
+  { state_name: "飛行", element: :speed, action_count: 1, action_pattern: "-" },
+  { state_name: "怒り+飛行", element: :technique, action_count: 1, action_pattern: "-" }
   # 形態変化が無い例。あるモンスターでは { state_name: "形態変化", element: :speed } を追加
 ])
 

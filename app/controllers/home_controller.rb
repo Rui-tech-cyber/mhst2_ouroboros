@@ -1,19 +1,25 @@
 class HomeController < ApplicationController
   def index
-    # 検索フォームの入力があればフィルタ
     if params[:q].present?
-      keyword = params[:q].strip
+      keyword = params[:q]
+      # モンスター検索
       @monsters = Monster.where("name LIKE ? OR kana LIKE ?", "%#{keyword}%", "%#{keyword}%")
 
-      # 検索履歴の保存（最新10件）
-      unless SearchHistory.exists?(keyword: keyword)
-        SearchHistory.create!(keyword: keyword)
-      end
+      # すでに存在するなら作らない
+      SearchHistory.find_or_create_by!(keyword: keyword)
+      SearchHistory.order(created_at: :desc).limit(10).offset(10).destroy_all
     else
       @monsters = Monster.all
     end
 
-    # 履歴取得（最新10件）
+    # ここで必ず履歴を渡す！
     @search_histories = SearchHistory.order(created_at: :desc).limit(10)
   end
+
+  def destroy_history
+    history = SearchHistory.find(params[:id])
+    history.destroy
+    redirect_to root_path, notice: "履歴を削除しました"
+  end
+
 end

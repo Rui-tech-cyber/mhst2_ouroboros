@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_08_27_102247) do
+ActiveRecord::Schema[7.2].define(version: 2025_08_28_020625) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_08_27_102247) do
     t.integer "element"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "action_count"
+    t.text "action_pattern"
     t.index ["monster_id"], name: "index_monster_states_on_monster_id"
   end
 

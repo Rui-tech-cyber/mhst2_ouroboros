@@ -23,8 +23,9 @@
   <% @search_histories.each do |history| %>
     <li>
       <%= link_to history.keyword, root_path(q: history.keyword) %>
-      <%= button_to "削除", destroy_history_monsters_path(id: history.id),
-              method: :delete, data: { confirm: "削除してよろしいですか？" } %>
+      <%= button_to "削除", destroy_history_path(history.id),
+              method: :delete,
+              data: { confirm: "削除してよろしいですか？" } %>
     </li>
   <% end %>
 </ul>
