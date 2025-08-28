@@ -213,10 +213,10 @@ end
 fatalis.monster_states.destroy_all
 
 fatalis.monster_states.create!([
-  { state_name: "通常(最初の2ターン)", element: :speed, action_count: 1, action_pattern: "・MHST2_ノータイプヘルフレイム(全体)\n└確率でやけど付与\n・MHST2_ノータイプスカイフォース(単体)\n└確率で攻撃/防御/素早さダウン" },
-  { state_name: "通常(ヘルフレイム後)", element: :power, action_count: 1, action_pattern: "・MHST2_ノータイプヘルフレイム(全体)\n└確率でやけど付与\n・MHST2_ノータイプスカイフォース(単体)\n└確率で攻撃/防御/素早さダウン" },
-  { state_name: "通常(スカイフォース後)", element: :speed, action_count: 1, action_pattern: "・MHST2_ノータイプヘルフレイム(全体)\n└確率でやけど付与\n・MHST2_ノータイプスカイフォース(単体)\n└確率で攻撃/防御/素早さダウン" },
-  { state_name: "怒り(1回目)", element: :technique, action_count: 2, action_pattern: "・MHST2_テクニックドラゴンウィップ(単体)\n・MHST2_テクニックドラゴンスイープ(全体)\n└確率で裂傷付与\n・MHST2_ノータイプドラゴンプレス(単体)\n└使用後に怒り解除" },
-  { state_name: "怒り(2回目)", element: :no_form, action_count: 2, action_pattern: "・MHST2_ノータイプスカイフォース(単体)←確率で攻撃/防御/素早さダウン\n・MHST2_テクニックドラゴンウィップ(単体)\n・MHST2_テクニックドラゴンスイープ(全体)\n└確率で裂傷付与\n・MHST2_ノータイプ粉塵爆発(全体)\n└確率で爆破やられ付与\n└使用後に怒り解除" },
-  { state_name: "怒り(3回目)", element: :power, action_count: 2, action_pattern: "・MHST2_パワードラゴンバースト(全体)\n└確率で会心率ダウン付与\n・MHST2_ノータイプスカイフォース(単体)\n└確率で攻撃/防御/素早さダウン\n・MHST2_テクニックドラゴンウイップ(単体)\n・MHST2_テクニックドラゴンスイープ(全体)\n└確率で裂傷付与\n・MHST2_ノータイプ超・粉塵爆発(全体)\n└HPが残りわずかの時に使用" }
+  { state_name: "通常(最初の2ターン)", element: :speed, action_count: 1, action_pattern: "・MHST2_ノータイプヘルフレイム(全体)←確率でやけど付与・MHST2_ノータイプスカイフォース(単体)←確率で攻撃/防御/素早さダウン" },
+  { state_name: "通常(ヘルフレイム後)", element: :power, action_count: 1, action_pattern: "・MHST2_ノータイプヘルフレイム(全体)←確率でやけど付与・MHST2_ノータイプスカイフォース(単体)←確率で攻撃/防御/素早さダウン" },
+  { state_name: "通常(スカイフォース後)", element: :speed, action_count: 1, action_pattern: "・MHST2_ノータイプヘルフレイム(全体)←確率でやけど付与・MHST2_ノータイプスカイフォース(単体)←確率で攻撃/防御/素早さダウン" },
+  { state_name: "怒り(1回目)", element: :technique, action_count: 2, action_pattern: "・MHST2_テクニックドラゴンウィップ(単体)・MHST2_テクニックドラゴンスイープ(全体)←確率で裂傷付与・MHST2_ノータイプドラゴンプレス(単体)←使用後に怒り解除" },
+  { state_name: "怒り(2回目)", element: :no_form, action_count: 2, action_pattern: "・MHST2_ノータイプスカイフォース(単体)←確率で攻撃/防御/素早さダウン・MHST2_テクニックドラゴンウィップ(単体)・MHST2_テクニックドラゴンスイープ(全体)←確率で裂傷付与・MHST2_ノータイプ粉塵爆発(全体)←確率で爆破やられ付与←使用後に怒り解除" },
+  { state_name: "怒り(3回目)", element: :power, action_count: 2, action_pattern: "・MHST2_パワードラゴンバースト(全体)←確率で会心率ダウン付与・MHST2_ノータイプスカイフォース(単体)←確率で攻撃/防御/素早さダウン・MHST2_テクニックドラゴンウイップ(単体)・MHST2_テクニックドラゴンスイープ(全体)←確率で裂傷付与・MHST2_ノータイプ超・粉塵爆発(全体)←HPが残りわずかの時に使用" }
 ])
